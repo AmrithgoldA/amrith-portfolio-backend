@@ -1,4 +1,5 @@
 const client = require('../postgressDbClient');
+const { mailer } = require('../utils/nodeMailer')
 
 async function getUserSkills(req, res) {
     try {
@@ -21,7 +22,24 @@ async function getSocialLinks(req, res) {
     }
 }
 
+async function callMailer(req, res) {
+    try {
+        const contactDetails = {
+            name: req.body.name,
+            email: req.body.email,
+            subject: req.body.subject,
+            message: req.body.message
+        };
+
+        const response = await mailer(contactDetails);
+    }
+    catch(error) {
+        console.log('Error occured while sending mail')
+    }
+}
+
 module.exports = {
     getUserSkills,
-    getSocialLinks
+    getSocialLinks,
+    callMailer
 };
