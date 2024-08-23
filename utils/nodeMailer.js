@@ -13,7 +13,7 @@ async function mailer(contactInfo) {
     const info = await transporter.sendMail({
         from: process.env.MAIL_ID,
         to: contactInfo.email,
-        subject: "Mail from portfolio",
+        subject: contactInfo.subject,
         html: `
             <p style="font-family: Arial, sans-serif; color: #333;">
                 Dear ${contactInfo.name},
@@ -41,9 +41,18 @@ async function adminMailer(contactInfo) {
     const info = await transporter.sendMail({
         from: process.env.MAIL_ID,
         to: process.env.MAIL_ID,
-        subject: "Admin Mail",
-        html: `<b>Hey, you got a new message from your portfolio! 
-                from ${contactInfo.email} </b>`,
+        subject: contactInfo.subject,
+        html: `
+            <p style="font-family: Arial, sans-serif; color: #333;">
+                Hey, you got a new message from your portfolio!
+            </p>
+            <p style="font-family: Arial, sans-serif; color: #333;">
+                From: ${contactInfo.email}
+            </p>
+            <p style="font-family: Arial, sans-serif; color: #333;">
+                Message: ${contactInfo.message}
+            </p>
+        `,
     });
 
     console.log("Message sent: %s", info.messageId);
