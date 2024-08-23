@@ -14,14 +14,21 @@ async function mailer(contactInfo) {
         from: process.env.MAIL_ID,
         to: contactInfo.email,
         subject: "Mail from portfolio",
-        html: `<p>Dear ${contactInfo.name},</P>
-                </br>
-                <p>I have received your email.</p>
-                </b>
-                <p>I appreciate your interest and will get back to you as soon as possible regarding your inquiry.</p>
-                </br>
-                <h4>regards,</h4>
-                </br><p>Amrith Gold</p>`,
+        html: `
+            <p style="font-family: Arial, sans-serif; color: #333;">
+                Dear ${contactInfo.name},
+            </p>
+            <p style="font-family: Arial, sans-serif; color: #333;">
+                I have received your email.
+                I appreciate your interest and will get back to you as soon as possible regarding your inquiry.
+            </p>
+            <p style="font-family: Arial, sans-serif; color: #333; margin-bottom: 0;">
+                Regards,
+            </p>
+            <p style="font-family: Arial, sans-serif; color: #333; margin-top: 2px;">
+                Amrith Gold
+            </p>
+        `,
     });
 
     adminMailer(contactInfo)
