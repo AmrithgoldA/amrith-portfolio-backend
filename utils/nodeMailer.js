@@ -20,7 +20,7 @@ async function mailer(contactInfo) {
             </p>
             <p style="font-family: Arial, sans-serif; color: #333;">
                 I have received your email.
-                I appreciate your interest and will get back to you as soon as possible regarding your inquiry.
+                Thanks for showing your interest and will get back to you as soon as possible regarding your inquiry.
             </p>
             <p style="font-family: Arial, sans-serif; color: #333; margin-bottom: 0;">
                 Regards,

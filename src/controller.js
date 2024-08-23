@@ -31,7 +31,8 @@ async function callMailer(req, res) {
             message: req.body.message
         };
 
-        const response = await mailer(contactDetails);
+        await mailer(contactDetails);
+        res.status(200).send('Success');
     }
     catch(error) {
         console.log('Error occured while sending mail')
