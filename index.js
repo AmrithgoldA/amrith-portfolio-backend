@@ -6,7 +6,7 @@ const cors = require('cors')
 const app = express();
 
 const corsOptions = {
-    origin: ['https://amrith-gold.netlify.app', 'http://localhost:5173'],
+    origin: ['https://amrith-gold.netlify.app', 'http://localhost:5173','http://localhost:5174'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204

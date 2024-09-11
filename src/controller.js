@@ -39,8 +39,20 @@ async function callMailer(req, res) {
     }
 }
 
+async function getProjectDetails(req, res) {
+    try {
+        const response = await client.query('SELECT * FROM projects')
+        res.json(response.rows);
+    }
+    catch (error) {
+        console.error('Error fetching social links');
+        res.status(500).send('Internal Server Error');
+    }
+}
+
 module.exports = {
     getUserSkills,
     getSocialLinks,
-    callMailer
+    callMailer,
+    getProjectDetails
 };
