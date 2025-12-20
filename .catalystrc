@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "19358000000010092",
+      "name": "hr-crawler",
+      "domain": {
+        "id": "50029178518",
+        "name": "hr-crawler-60043472505.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60043472505",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

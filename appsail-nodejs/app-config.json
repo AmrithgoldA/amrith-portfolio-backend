@@ -1,0 +1,11 @@
+{
+	"command": "node index.js",
+	"build_path": "./",
+	"stack": "node16",
+	"env_variables": {},
+	"memory": 256,
+	"scripts": {
+		"preserve": "npm install",
+		"predeploy": "npm install"
+	}
+}

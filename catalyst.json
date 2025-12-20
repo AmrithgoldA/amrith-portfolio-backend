@@ -1,0 +1,8 @@
+{
+  "appsail": [
+    {
+      "source": "appsail-nodejs",
+      "name": "hr-crawler"
+    }
+  ]
+}
