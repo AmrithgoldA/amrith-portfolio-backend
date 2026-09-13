@@ -2,7 +2,7 @@ require("dotenv").config()
 const crypto = require('crypto')
 const nodeMailer = require('nodemailer')
 
-// Gmail only sends as the authenticated account, so MAIL_ID must be amrithgold1002@gmail.com
+// Gmail only sends as the authenticated account, so MAIL_ID must be goldandgold1002@gmail.com
 const MAIL_ID = process.env.MAIL_ID?.trim()
 // Google displays App Passwords in groups with spaces; the spaces aren't part of the password
 const MAIL_PASS = process.env.MAIL_PASS?.replace(/\s+/g, '')
