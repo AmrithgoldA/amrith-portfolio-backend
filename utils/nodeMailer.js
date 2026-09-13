@@ -3,16 +3,18 @@ const crypto = require('crypto')
 const nodeMailer = require('nodemailer')
 
 // Gmail only sends as the authenticated account, so MAIL_ID must be amrithgold1002@gmail.com
-const MAIL_ID = process.env.MAIL_ID
+const MAIL_ID = process.env.MAIL_ID?.trim()
+// Google displays App Passwords in groups with spaces; the spaces aren't part of the password
+const MAIL_PASS = process.env.MAIL_PASS?.replace(/\s+/g, '')
 // Inbox that receives enquiries; defaults to the sending account
-const ADMIN_MAIL = process.env.ADMIN_MAIL || MAIL_ID
+const ADMIN_MAIL = process.env.ADMIN_MAIL?.trim() || MAIL_ID
 const SENDER = { name: 'Amrith Gold', address: MAIL_ID }
 
 const transporter = nodeMailer.createTransport({
     service: 'Gmail',
     auth: {
         user: MAIL_ID,
-        pass: process.env.MAIL_PASS,
+        pass: MAIL_PASS,
     },
 });
 
@@ -35,6 +37,12 @@ function createEnquiryId(date) {
 }
 
 async function mailer(contactInfo) {
+    if (!MAIL_ID || !MAIL_PASS) {
+        const error = new Error('MAIL_ID or MAIL_PASS environment variable is not set')
+        error.code = 'EMAILCONFIG'
+        throw error
+    }
+
     const now = new Date()
     const enquiry = {
         ...contactInfo,

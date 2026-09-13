@@ -35,7 +35,12 @@ async function callMailer(req, res) {
     }
     catch(error) {
         console.error('Error occured while sending mail:', error);
-        res.status(500).send('Failed to send mail');
+        // Only non-sensitive diagnostics: e.g. EAUTH/535 = bad credentials, EMAILCONFIG = env vars missing
+        res.status(500).json({
+            error: 'Failed to send mail',
+            code: error.code,
+            responseCode: error.responseCode
+        });
     }
 }
 
