@@ -23,19 +23,19 @@ async function getSocialLinks(req, res) {
 }
 
 async function callMailer(req, res) {
-    try {
-        const contactDetails = {
-            name: req.body.name,
-            email: req.body.email,
-            subject: req.body.subject,
-            message: req.body.message
-        };
+    const { name, email, subject, message } = req.body || {};
 
-        await mailer(contactDetails);
-        res.status(200).send('Success');
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: 'Name, email and message are required' });
+    }
+
+    try {
+        const enquiryId = await mailer({ name, email, subject, message });
+        res.status(200).json({ enquiryId });
     }
     catch(error) {
-        console.log('Error occured while sending mail')
+        console.error('Error occured while sending mail:', error);
+        res.status(500).send('Failed to send mail');
     }
 }
 
