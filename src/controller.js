@@ -66,10 +66,23 @@ async function getCarrierDetails(req, res) {
     }
 }
 
+// Used by the daily Vercel cron (vercel.json) so the database never goes idle long enough to be paused
+async function healthCheck(req, res) {
+    try {
+        await client.query('SELECT 1');
+        res.json({ status: 'ok' });
+    }
+    catch (error) {
+        console.error('Health check failed:', error.message);
+        res.status(503).json({ status: 'database unavailable' });
+    }
+}
+
 module.exports = {
     getUserSkills,
     getSocialLinks,
     callMailer,
     getProjectDetails,
-    getCarrierDetails
+    getCarrierDetails,
+    healthCheck
 };
