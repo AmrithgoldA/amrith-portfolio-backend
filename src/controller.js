@@ -66,7 +66,7 @@ async function getCarrierDetails(req, res) {
     }
 }
 
-// Used by the daily Vercel cron (vercel.json) so the database never goes idle long enough to be paused
+// Lets an uptime monitor (or a scheduled job) check the API and database, and keeps the database from idling
 async function healthCheck(req, res) {
     try {
         await client.query('SELECT 1');

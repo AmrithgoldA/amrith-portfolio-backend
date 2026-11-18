@@ -11,11 +11,5 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ],
-    "crons": [
-        {
-            "path": "/portfolio/health",
-            "schedule": "0 6 * * *"
-        }
     ]
 }
